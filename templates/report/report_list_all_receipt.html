@@ -1,0 +1,34 @@
+{% extends 'report/base_report.html' %}
+
+{% block content %}
+    
+    <table class='table'>
+        <tr>
+            <th>#</th>
+            {% for name in column_name %}
+            <th>{{ name }} </th>
+            {% endfor %}
+        </tr>
+    {% for lineitem in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ lineitem.receipt_no }}</td>
+            <td>{{ lineitem.receipt_date }}</td>
+            <td>{{ lineitem.customer_code }}</td>
+            <td>{{ lineitem.payment_method }}</td>
+            <td>{{ lineitem.payment_reference }}</td>
+            <td>{{ lineitem.remarks }}</td>
+            <td>{{ lineitem.total_received }}</td>
+            <td>{{ lineitem.customer_name }}</td>
+            <td>{{ lineitem.invoice_no }}</td>
+            <td>{{ lineitem.amount_paid_here }}</td>
+            <td>{{ lineitem.invoice_date }}</td>
+
+        <tr>
+    {% endfor %}
+    
+    {% endblock %}
+    
+
+</body>
+</html>

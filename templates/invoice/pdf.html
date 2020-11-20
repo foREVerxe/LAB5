@@ -1,0 +1,65 @@
+{% extends 'base_blank.html' %}
+{% load static %}
+
+{% block title %}Invoice Report{% endblock %}
+
+{% block title_name %}Invoice Form{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block content %}
+<div id='content'>
+    <div class='row'>
+        <div class='col-sm'>
+        Invoice No: {{ invoice.invoice_no }}<br>
+        </div>
+        <div class='col-sm'>
+        Invoice Date: {{ invoice.date }}<br>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm'>
+        Customer Code: {{ invoice.customer_code }}<br>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm'>
+        Customer Name: {{ invoice.customer_code__name }}<br>
+        </div>
+    </div>
+    <table class='table'>
+        <tr>
+            <th>#</th>
+            <th>Product Code</th>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Extended Price</th>
+        </tr>
+    {% for lineitem in invoicelineitem %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ lineitem.product_code }}</td>
+            <td>{{ lineitem.product_code__name }}</td>
+            <td align='right'>{{ lineitem.unit_price }}</td>
+            <td align='right'>{{ lineitem.quantity }}</td>
+            <td align='right'>{{ lineitem.extended_price }}</td>
+        <tr>
+    {% endfor %}
+        <tr>
+            <td colspan='4'></td>
+            <td align='right'>Total Price</td><td align='right'>{{ invoice.total }}</td>
+        </tr>
+        <tr>
+            <td colspan='4'></td>
+            <td align='right'>VAT</td><td align='right'>{{ invoice.vat }}</td>
+        </tr>
+        <tr>
+            <td colspan='4'></td>
+            <td align='right'>Amount Due</td><td align='right'>{{ invoice.amount_due }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
+
